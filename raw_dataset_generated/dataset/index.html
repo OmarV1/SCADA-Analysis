@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<!--[if lt IE 8 ]><html class="no-js ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="no-js ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 8)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+   <!--- Basic Page Needs
+   ================================================== -->
+   <meta charset="utf-8">
+	<title> Tanks Dataset </title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+   <!-- Mobile Specific Metas
+   ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+    ================================================== -->
+   <link rel="stylesheet" href="css/default.css">
+	<link rel="stylesheet" href="css/layout.css">
+   <link rel="stylesheet" href="css/media-queries.css">
+   <link rel="stylesheet" href="css/magnific-popup.css">
+
+
+<style type="text/css">
+.superindice
+{vertical-align:super}
+.subindice
+{vertical-align:sub} 
+</style>
+
+   <!-- Script
+   ================================================== -->
+	<script src="js/modernizr.js"></script>
+
+   <!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="favicon.ico" >
+
+</head>
+
+<body>
+
+   <!-- Header
+   ================================================== -->
+
+
+      <nav id="nav-wrap">
+
+         <ul id="nav" class="nav">
+		 <li><a class="smoothscroll" href="#introduction">Introduction</a></li>
+	         <li><a class="smoothscroll" href="#description">Description</a></li>
+                 <li><a class="smoothscroll" href="#howto">How to use it</a></li>
+                 <li><a class="smoothscroll" href="#files">Files</a></li>
+                 <li><a class="smoothscroll" href="#datasheets">Datasheets</a></li>
+                 <li><a class="smoothscroll" href="#scripts">Scripts</a></li>
+		<li><a class="smoothscroll" href="#authors">Authors</a></li>
+         </ul> <!-- end #nav -->
+
+      </nav> <!-- end #nav-wrap -->
+
+ 
+
+   <!-- Style Guide Section
+   ================================================== -->
+   <section id="introduction" style="padding: 90px 0 72px; background: #fff;">
+
+      <div class="row add-bottom">
+
+         <div class="twelve columns">
+
+            <h1>Dataset of anomalies and malicious acts in a cyber-physical subsystem.</h1>
+
+            <p class="lead add-bottom">
+		Given interconnectedness, technology fragmentation and vulnerability, cyber-physical systems
+		are increasingly prone to faulty operation. Problems can be induced by anomalies of system
+		components, or external malicious acts liye sabotages and cyber-attacys. Although cyber-
+		physical systems are critical and ubiquitous, i.e. transport, industry, and smart cities, datasets to
+		investigate and compare faulty operation detection and characterization are not available. 
+	</p>
+            <p class="lead add-bottom">
+		We present a dataset produced using a supervisory control and data acquisition system formed by
+		two tanks - liquid containers for fuel or water –, two pumps, one ultrasound sensor, and four
+		discrete liquid level sensors, as well as a programmable logic controller. Sets of temporal series
+		representing normal operation, anomalies, and malicious acts observed in this cyber-physical
+		subsystem were collected in 15 files of different duration.
+	</p>
+
+            <center><img width="80%" height="80%" alt="tanks-schema" src="images/tanks.png"></center>
+
+            <hr>
+
+         </div>
+
+      </div> <!-- Row End-->
+
+      <div class="row add-bottom">
+
+         <div class="six columns add-bottom">
+
+            <h3>The platform</h3>
+
+            <p class="drop-cap"> Two tanks of different volumes, one ultrasound depth sensor, four discrete sensors, two pumps, and
+an alarm indicator form the used cyber-physical subsystem. It is controlled by one computer
+through a PLC connected to a control and monitoring network, and can function as water or fuel storage
+and distribution device. </p>
+
+         </div>
+
+         <div class="six columns add-bottom">
+
+            <h3>Dataset</h3>
+
+            <p class="drop-cap">A computer connected to the control and monitoring network acquired the time series of the cyber-
+		physical subsystem. Working on automatic mode, log files’ values were recorded after sending a
+		periodic read request to each register of the PLC applying a scan time of 0.1 seconds. Collected data for
+		all scenarios were stored in CSV files.
+		</p>
+
+
+         </div>
+
+  </section>  
+
+
+   <section id="description" style="padding: 90px 0 72px; background: #fff;">
+      <div class="row add-bottom">
+
+         <div class="twelve columns">
+
+            <h1>Description.</h1>
+
+		<h3>Platform Description</h3>
+            <p class="lead add-bottom">
+		An ultrasound depth sensor – model XX918A3F1M12 made by Telemecanique and largely used in
+		industrial systems for measuring distances or presence detection is installed on top of the main tank,
+		to measure the distance from the sensor to the liquid surface.
+	</p>
+	<p class="lead add-bottom">
+		After being filled by pomp 2 from a recovery tank, the second tank transfers liquid to the main tank
+		when pump 1 is activated. Constant liquid consumption is generated by an opening in the bottom of
+		the main tank. To avoid overflowing, both tanks have a security aperture at the top.
+	</p>
+	<p class="lead add-bottom">
+		A PLC fabricated by Schneider Electric – model TWDLCAE40DRF with an expansion analog input
+		module TM2AMI2HT – is commanded in two different ways: a touch screen or a remote system
+		connected to the network. Components of this cyber-physical platform communicate using the
+		Modbus/IP [A] network protocol and a generic switch for connections.
+	</p>
+	<p class="lead add-bottom">
+		Furthermore, the platform can function according to either manual or automatic modes. In manual
+		mode, activation is carried out from the touch screen or from a remote system. In automatic mode,
+		the pump that fills the second tank is activated when its liquid volume goes below 1.25 L (considered
+		as low level) and stops when a volume of 9 L (considered as high level) is reached. Similarly, the
+		pump that fills the main tank is triggered when the ultrasound sensor measures less than 2.1 L (step
+		3 000) and it stays turned on until a level of 6.3 L (step 9 000) is reached. An example of these signals
+		is illustrated in Fig. 2. The pumps and discrete sensor states are: “on” (1.0) and “off” (0.0).
+	</p>
+
+            
+         <p class="lead add-bottom">
+        <h3>Schema of the network: </h3>
+
+           <center><img width="70%" height="70%" alt="tanks-network" src="images/network_tanks.png"></center>
+
+            </p>
+            
+		<h3> Acquisition protocol </h3>
+		<p class="lead add-bottom">
+		A computer connected to the control and monitoring network acquired the time series of the
+		cyber-physical subsystem. Working on automatic mode, log files’ values were recorded after sending
+		a periodic read request to each register of the PLC applying a scan time of 0.1 seconds. Collected
+		data for all scenarios were stored in CSV files.
+		</p>
+
+		<h3> Structure of the data log registers </h3>
+		<p class="lead add-bottom">
+		Three registers of the PLC (Table A), identified from 2 to 4, provided output data. Register 2
+		provided the bits that indicate the binary state of the four discrete sensors, identified as DS i . Register
+		3 contained the binary state of the two pumps identified as P j . Register 4 stored the value of the
+		ultrasound sensor measure.
+		</p>
+
+		<p class="lead add-bottom">
+		Data read on the PLC were stored in CVS log files following the same order of items for all the files
+		of the dataset, namely: Time stamp, register, and value. The time stamp corresponds to: date and
+		time using the format dd/mm/yyyy hh:mm:ss.sss. A script in Python complements the dataset to
+		ease its use. This code reads the CSV files, allocates time series in the corresponding vectors, and
+		permits the visualization of the signals.
+		</p>
+
+
+<hr>
+
+         </div>
+
+
+<center><img width="70%" height="70%" alt="tanks-network" src="images/table_bits.png"></center>
+
+<hr>
+
+<div class="twelve columns">
+         <p class="lead add-bottom">
+        You can find more detailed information on the data in brief article. <br>
+
+            </p>
+            
+             <hr>
+            
+            </div>
+
+
+      </div> <!-- Row End-->
+
+   </section> <!-- Resume Section End-->
+                  
+                  
+       <section id="howto" style="padding: 90px 0 72px; background: #fff;">       
+                  
+                  
+                  <div class="row add-bottom">
+
+         <div class="twelve columns">
+
+            <h1>How to use it.</h1>
+
+            <p class="lead add-bottom">This work is licensed under a 
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>. You can find detailled information bellow.
+            </p>
+
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+    <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+
+</div>
+
+
+ <div class="six columns add-bottom">
+
+            <h3>You are free to:</h3>
+
+		<p> <b>Share </b> — copy and redistribute the material in any medium or format. </p>
+		<p> <b>Adapt </b> — remix, transform, and build upon the material for any purpose, even commercially. </p>
+    
+
+    The licensor cannot revoke these freedoms as long as you follow the license terms.
+  			   </p>
+
+
+</div>
+
+ <div class="six columns add-bottom">
+
+            <h3>Under the following terms:</h3>
+
+            <p><b>Attribution</b> — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. </p>
+
+		<p><b>ShareAlike</b> — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
+
+     <p><b>No additional restrictions</b> — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
+  			   </p>
+
+</div>
+
+           
+<div class="twelve columns">
+         <p class="lead add-bottom">
+        To attribute this work to the authors you should cite this article. <br>
+
+            </p>
+            
+             <hr>
+            
+            </div>
+            
+                  </div> <!-- Row End-->      
+                  
+                  
+                  </div>
+        </section>      
+        
+        
+        <section id="files" style="padding: 90px 0 72px; background: #fff;">       
+                  
+                  
+                  <div class="row add-bottom">
+
+         <div class="twelve columns">
+
+            <h1>Files.</h1>
+
+            <p>
+		<table>
+			  <tr>
+			    <th>Scenario</th>
+                            <th>Affected sub-system &nbsp;&nbsp;</th>
+                            <th>Type of event</th>
+                            <th>Duration (hh:mm:ss)</th>
+			    <th>File</th>
+			    <th>Size</th>
+			  </tr>
+			  <tr>
+			    <td>Normal</td>
+                            <td>None</td>
+                            <td>Normal</td>
+                            <td> 02:01:47 </td>
+			    <td><a href="./logs/normal.csv"> Download </a></td>
+			    <td>7.3 MB</td>
+			  </tr>
+			  <tr>
+			    <td> Plastic bag &nbsp;&nbsp;</td>
+                            <td>Ultrasounder sensor</td>
+                            <td>Accident / Sabotage</td>
+                            <td> 00:33:20 </td>
+			    <td><a href="./logs/plastic_bag.csv"> Download &nbsp;&nbsp; </a></td>
+			    <td>4.2 MB</td>
+			  </tr>
+                          <tr>
+			    <td> Blocked measure 1</td>
+                            <td>Ultrasounder sensor</td>
+                            <td>Breakdown / Sabotage</td>
+                            <td> 00:00:25 </td>
+			    <td><a href="./logs/blocked_1.csv"> Download </a></td>
+			    <td>74 KB</td>
+			  </tr>
+                          <tr>
+			    <td> Blocked measure 2</td>
+                            <td>Ultrasounder sensor</td>
+                            <td>Breakdown / Sabotage  &nbsp;&nbsp;</td>
+                            <td> 00:00:17 </td>
+			    <td><a href="./logs/blocked_2.csv"> Download </a></td>
+			    <td>48 KB</td>
+			  </tr>
+                          <tr>
+			    <td> Floating objects in main tank (2 objects) &nbsp;&nbsp;</td>
+                            <td>Ultrasounder sensor</td>
+                            <td>Accident / Sabotage</td>
+                            <td> 00:01:35 </td>
+			    <td><a href="./logs/poly_2.csv"> Download &nbsp;&nbsp; </a></td>
+			    <td>272 KB</td>
+			  </tr>
+                          <tr>
+			    <td> Floating objects in main tank (7 objects) </td>
+                            <td>Ultrasounder sensor</td>
+                            <td>Accident / Sabotage</td>
+                            <td> 00:01:22 </td>
+			    <td><a href="./logs/poly_7"> Download &nbsp;&nbsp; </a></td>
+			    <td>234 KB</td>
+			  </tr>
+                          <tr>
+			    <td>Humidity</td>
+                            <td>Ultrasounder sensor</td>
+                            <td>Breakdown</td>
+                            <td> 00:00:18 </td>
+			    <td><a href="./logs/wet_sensor.csv"> Download </a></td>
+			    <td>52 KB</td>
+			  </tr>
+                          <tr>
+			    <td> Discrete sensor failure 1 </td>
+                            <td>Discrete sensor 1</td>
+                            <td>Breakdown</td>
+                            <td> 00:13:55 </td>
+			    <td><a href="./logs/second_blocked.csv"> Download &nbsp;&nbsp; </a></td>
+			    <td>1.8 MB</td>
+			  </tr>
+                          <tr>
+			    <td> Discrete sensor failure 2 </td>
+                            <td>Discrete sensors 2</td>
+                            <td>Breakdown</td>
+                            <td> 00:03:40 </td>
+			    <td><a href="./logs/high_blocked.csv"> Download &nbsp;&nbsp; </a></td>
+			    <td>610 KB</td>
+			  </tr>
+                          <tr>
+			    <td> Denial of Service attack</td>
+                            <td>Network</td>
+                            <td>Cyber-attack &nbsp;&nbsp;</td>
+                            <td> 00:01:37 </td>
+			    <td><a href="./logs/DoS_attack.csv"> Download &nbsp;&nbsp; </a></td>
+			    <td>102 KB</td>
+			  </tr>
+                          <tr>
+			    <td> Spoofing </td>
+                            <td>Network</td>
+                            <td>Cyber-attack</td>
+                            <td> 00:34:33 </td>
+			    <td><a href="./logs/spoofing.csv"> Download &nbsp;&nbsp; </a></td>
+			    <td>3.2 MB</td>
+			  </tr>
+                          <tr>
+			    <td> Wrong conection </td>
+                            <td>Network</td>
+                            <td>Breakdown / Sabotage</td>
+                            <td> 00:15:33 </td>
+			    <td><a href="./logs/bad_conection.csv"> Download &nbsp;&nbsp; </a></td>
+			    <td>1.7 MB</td>
+			  </tr>
+
+                          <tr>
+			    <td>Person hitting the tanks (low intensity)</td>
+                            <td>Whole subsystem</td>
+                            <td>Sabotage</td>
+                            <td> 00:00:39 </td>
+			    <td><a href="./logs/hits_1.csv"> Download </a></td>
+			    <td>112 KB</td>
+			  </tr>
+                          <tr>
+			    <td>Person hitting the tanks (medium intensity)  &nbsp;&nbsp;</td>
+                            <td>Whole subsystem</td>
+                            <td>Sabotage</td>
+                            <td> 00:00:32 </td>
+			    <td><a href="./logs/hits_2.csv"> Download </a></td>
+			    <td>91 KB</td>
+			  </tr>
+                          <tr>
+			    <td>Person hitting the tanks (high intensity)</td>
+                            <td>Whole subsystem</td>
+                            <td>Sabotage</td>
+                            <td> 00:00:33 </td>
+			    <td><a href="./logs/hits_3.csv"> Download </a></td>
+			    <td>95 KB</td>
+			  </tr>
+		</table> 
+
+
+            </p>
+
+            <hr>
+
+         </div>
+
+      </div> <!-- Row End-->
+                  
+                  
+        </section>     
+                  
+                  
+                  
+        <section id="datasheets" style="padding: 90px 0 72px; background: #fff;">       
+                  
+                  
+                  <div class="row add-bottom">
+
+         <div class="twelve columns">
+
+            <h1>Datasheets.</h1>
+
+            <p class="lead add-bottom"> PLC Datasheet -<a href="./datasheets/twdlcae40drf-datasheet.pdf"> Download </a>
+            <p class="lead add-bottom"> Analog input module Datasheet -<a href="./datasheets/TM2AMI2HT-datasheet.pdf"> Download </a>
+            <p class="lead add-bottom"> Ultrasounder Datasheet -<a href="./datasheets/Schneider_Electric-XX918A3F1M12-datasheet.pdf"> Download </a>
+            </p>
+
+            <hr>
+
+         </div>
+
+      </div> <!-- Row End-->
+                  
+                  
+        </section>     
+                  
+                  
+                  
+           <section id="scripts" style="padding: 90px 0 72px; background: #fff;">       
+                  
+                  
+                  <div class="row add-bottom">
+
+         <div class="twelve columns">
+
+            <h1>Script.</h1>
+
+            <p class="lead add-bottom">
+                This python script allows reading and plotting the log files to ease the utilization of the dataset. <br>
+                <a href="./scripts/plot_dataset.py"> Download </a>
+            </p>
+
+            <hr>
+
+         </div>
+
+      </div> <!-- Row End-->
+                  
+                  
+        </section>
+                  
+
+           <section id="authors" style="padding: 90px 0 72px; background: #fff;">       
+                  
+                  
+                  <div class="row add-bottom">
+
+         <div class="twelve columns">
+
+            <h1>Authors.</h1>
+
+            <p class="lead add-bottom">
+
+                <h3> Pedro Merino Laso <span class='superindice'>a</span>    </h3>
+
+		Email: <a href="mailto:pedro@merinolaso.eu"> pedro@merinolaso.eu </a><br>
+		Website: <a href="http://www.merinolaso.eu"> www.merinolaso.eu </a><br>
+
+		<h3> David Brosset <span class='superindice'>ab</span>  </h3>
+		Email: <a href="mailto:david.brosset@ecole-navale.fr"> david.brosset@ecole-navale.fr </a><br>
+
+		<h3> John Puentes <span class='superindice'>ac</span>  </h3>
+
+		Email: <a href="mailto:john.puentes@imt-atlantique.fr"> john.puentes@imt-atlantique.fr </a><br>
+
+		<br>
+
+		a) Chair of Naval Cyber Defense. École Navale - CC 600 F29240 Brest Cedex 9 France<br>
+
+		b) Naval Academy Research Institute École Navale - CC 600 F29240 Brest Cedex 9 France<br>
+
+		c) Dpt. Image et Traitement de l'Information. Institut Mines-Télécom Atlantique Bretagne Pays de la Loire; Lab-STICC UMR CNRS 6285 Équipe DECIDE, CS 83818 29238. Brest Cedex 3, France<br>
+
+            </p>
+
+            <hr>
+
+         </div>
+
+      </div> <!-- Row End-->
+                  
+                  
+        </section>
+                  
+                  
+
+
+   <!-- footer
+   ================================================== -->
+   <footer>
+
+      <div class="row">
+
+         <div class="twelve columns">
+
+            <ul class="social-links">
+               
+            </ul>
+
+            <ul class="copyright">
+               <li>&copy; Copyright 2014 CeeVee</li>
+               <li>Design by <a title="Styleshout" href="http://www.styleshout.com/">Styleshout</a></li>   
+            </ul>
+
+         </div>
+
+         <div id="go-top" style="display: block;"><a class="smoothscroll" title="Back to Top" href="#description"><i class="icon-up-open"></i></a></div>
+
+      </div>
+
+   </footer> <!-- Footer End-->
+
+   <!-- Java Script
+   ================================================== -->
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+   <script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')</script>
+   <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+
+   <script src="js/jquery.flexslider.js"></script>
+   <script src="js/waypoints.js"></script>
+   <script src="js/jquery.fittext.js"></script>
+   <script src="js/magnific-popup.js"></script>
+   <script src="js/doubletaptogo.js"></script>
+   <script src="js/spin.js"></script>
+
+   <script src="js/init.js"></script>
+
+</body>
+
+</html>
